@@ -1,0 +1,218 @@
+/* Dropdown.css */
+
+/* Style for the button */
+.dropdown-area {
+  /* Main container for the dropdown button */
+  position: relative;
+  display: flex;
+  background-color: #fff;
+  border: 1px solid rgb(217, 217, 217);
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  margin-bottom: 3px;
+  font: 14px/1.4 "RobotoDraft", sans-serif;
+  width: 400px;
+  color: gray;
+  user-select: none;
+}
+
+/* Change the border color to blue on hover */
+.dropdown-area:hover {
+  border-color: #3498db;
+}
+
+.dropdown-area.active {
+  border-color: #3498db;
+}
+
+.search-input-container {
+  /* Container for the search input */
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  /* Search input field */
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px;
+  border: 1px solid rgba(211, 211, 211, 0.5);
+  border-radius: 4px;
+  outline: none;
+  flex: 1;
+}
+
+.dropdown-arrow {
+  /* Dropdown arrow */
+  position: absolute;
+  right: 10px;
+  top: 12%;
+  font-size: 22px;
+  line-height: 1;
+}
+.dropdown-arrow:hover {
+  color: #3498db;
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+  /* Main container for the dropdown content */
+  position: absolute;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  user-select: none;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.load-more-option {
+  /* "Load More" option style */
+  padding: 12px 16px;
+  font: 14px/1.4 "RobotoDraft", sans-serif;
+  color: #535353;
+  cursor: pointer;
+}
+
+.no-results-found {
+  padding: 12px 16px;
+  font: 14px/1.4 "RobotoDraft", sans-serif;
+  color: #535353;
+}
+
+/* Define the hover effect for the "Load More" option */
+.load-more-option:hover {
+  font: 14px/1.4 "RobotoDraft", sans-serif;
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.dropdown-content label.dropdown-item.disabled {
+  /* Style for disabled dropdown items */
+  color: gray;
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+}
+
+/* Add spacing between checkbox and text */
+.dropdown-content .custom-checkbox + .dropdown-label {
+  margin-left: 8px;
+}
+
+/* Apply the open class to show the dropdown content with animation */
+.dropdown-content.open {
+  opacity: 1;
+  transform: translateY(0);
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-timing-function: ease-in-out;
+  animation-name: fadeIn;
+}
+
+/* Style the individual dropdown items and custom checkboxes */
+.dropdown-content .dropdown-item {
+  /* Style for individual dropdown items */
+  padding: 12px 16px;
+  font: 14px/1.4 "RobotoDraft", sans-serif;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 0.3s ease, border-radius 0.3s ease; /* Add hover transition */
+}
+
+/* Style the custom checkbox itself */
+.dropdown-content .custom-checkbox::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: white;
+  transition: background-color 0.3s ease; /* Add transition */
+}
+
+/* Style the custom checkbox when checked */
+.dropdown-content .custom-checkbox:checked::before {
+  background-color: #3498db;
+  border-radius: 3px;
+}
+
+/* Define the hover effect for dropdown items */
+.dropdown-content .dropdown-item:hover {
+  background-color: #ddd;
+  border-radius: 8px;
+}
+
+.custom-checkbox input {
+  /* Hide the native checkbox input */
+  position: absolute;
+  opacity: 0;
+}
+
+.selected-items {
+  /* Container for selected items */
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap */
+}
+
+.selected-item {
+  /* Style for selected items */
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 8px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 4px;
+  cursor: default;
+  font-size: 14px;
+  color: #333;
+}
+
+.remove-item {
+  /* Style for the remove item button */
+  width: 8px;
+  height: 8px;
+  margin-left: 4px;
+  margin-bottom: 16px;
+  color: gray;
+}
+
+.remove-item:hover {
+  /* Change remove item button color on hover */
+  cursor: pointer;
+  color: black;
+}
+
+/* Define the fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Define the fade-out animation */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { useState, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
-import { Button, Col, Row, Typography } from "antd";
+import { Button, Col, Image, Row, Typography } from "antd";
 
 const { Title } = Typography;
 
@@ -12,7 +12,7 @@ const { Title } = Typography;
 //   humidity
 // }
 
-function ToyRequest() {
+function Weather() {
   // needs to go to secure key storage
   const apiKey = "ce309858c9580a2f86ac0e0f45374afb";
   const [isLoading, setIsLoading] = useState(true);
@@ -77,40 +77,42 @@ function ToyRequest() {
   }, [lat, long]);
 
   return (
-    <div>
+    <div style={{ userSelect: "none" }}>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <h2>Weather Today</h2>
-          <img
-            src={"http://openweathermap.org/img/wn/" + weatherId + "@2x.png"}
-          />
-          <Col span={24}>
-            <Row align={"middle"} justify={"center"}>
-              <Title>{city}</Title>
-            </Row>
+        <Col span={24}>
+          <Title>Weather Today</Title>
+          <Row justify={"center"}>
+            <Image
+              preview={false}
+              draggable={false}
+              src={"http://openweathermap.org/img/wn/" + weatherId + "@4x.png"}
+            />
+          </Row>
+          <Row align={"middle"} justify={"center"}>
+            <Title>{city}</Title>
+          </Row>
 
-            <Row align={"middle"} justify={"center"}>
-              <Title>{showF ? toF(temp) : toC(temp)}</Title>
-              <Button
-                style={{ marginLeft: "20px", alignSelf: "center" }}
-                // style={paddingLeft: "20px"},
-                size="large"
-                type="primary"
-                title="C | F"
-                onClick={() => {
-                  setShowF(!showF);
-                }}
-              >
-                C | F
-              </Button>
-            </Row>
-          </Col>
-        </div>
+          <Row align={"middle"} justify={"center"}>
+            <Title>{showF ? toF(temp) : toC(temp)}</Title>
+            <Button
+              style={{ marginLeft: "20px", alignSelf: "center" }}
+              // style={paddingLeft: "20px"},
+              size="large"
+              type="primary"
+              title="C | F"
+              onClick={() => {
+                setShowF(!showF);
+              }}
+            >
+              C | F
+            </Button>
+          </Row>
+        </Col>
       )}
     </div>
   );
 }
 
-export default ToyRequest;
+export default Weather;
