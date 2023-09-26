@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useMemo } from "react";
-import { fruitEmojis } from "../../constants";
+import { fruitEmojis } from "../../../constants";
 import { Typography } from "antd";
 import "./Snake.css";
 

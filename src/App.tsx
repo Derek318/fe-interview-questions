@@ -2,10 +2,11 @@ import { Layout, Menu } from "antd";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ToyRequest from "./components/Weather/Weather";
 import Dropdown from "./components/Dropdown/Dropdown";
-import Snake from "./components/Snake/Snake";
-import Piano from "./components/Piano/Piano";
-import Paint from "./components/Paint/Paint";
+// import Piano from "./components/Piano/Piano";
 import { fruitOptions } from "./constants";
+import { Piano } from "./components/Piano/Piano";
+import Interview2 from "./components/Interview2/Interview2";
+import Paint from "./components/old/Paint/Paint";
 
 const { Header, Content } = Layout;
 
@@ -21,7 +22,7 @@ function App() {
                 style={{ userSelect: "none" }}
                 to="/weather"
               >
-                Weather
+                Interview0
               </Link>
             </Menu.Item>
             <Menu.Item key="2">
@@ -37,30 +38,20 @@ function App() {
               <Link
                 draggable={false}
                 style={{ userSelect: "none" }}
-                to="/snake"
+                to="/interview1"
               >
-                Snake
+                Interview 1
               </Link>
             </Menu.Item>
             <Menu.Item key="4">
               <Link
                 draggable={false}
                 style={{ userSelect: "none" }}
-                to="/piano"
+                to="/interview2"
               >
-                Piano
+                Interview 2
               </Link>
             </Menu.Item>
-            <Menu.Item key="5">
-              <Link
-                draggable={false}
-                style={{ userSelect: "none" }}
-                to="/paint"
-              >
-                Paint
-              </Link>
-            </Menu.Item>
-            {/* Add more menu items for other Mini-projects */}
           </Menu>
         </Header>
         <Content style={{ padding: "20px" }}>
@@ -70,10 +61,8 @@ function App() {
               path="/dropdown"
               element={<Dropdown options={fruitOptions} multiple />}
             />
-            <Route path="/snake" element={<Snake />} />
-            <Route path="/piano" element={<Piano />} />
-            <Route path="/paint" element={<Paint />} />
-            {/* Add more routes for other Mini-projects */}
+            <Route path="/interview1" element={<Piano />} />
+            <Route path="/interview2" element={<Paint />} />
           </Routes>
         </Content>
       </Layout>

@@ -1,6 +1,6 @@
 import * as Tone from "tone";
 import { useState } from "react";
-import { useMouse } from "../Contexts/MouseProvider"; // Import the useMouse hook
+import { useMouse } from "../../Contexts/MouseProvider"; // Import the useMouse hook
 
 Tone.start();
 
