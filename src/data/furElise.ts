@@ -412,4 +412,92 @@ const riverFlowsInYou = [
   { note: "F#2", duration: "4n" },
 ];
 
-export { furElise, riverFlowsInYou };
+const moonlightSonata = [
+  { note: "E4", duration: "4n" },
+  { note: "D#4", duration: "8n" },
+  { note: "E4", duration: "8n" },
+  { note: "D#4", duration: "4n" },
+  { note: "E4", duration: "4n" },
+  { note: "B3", duration: "4n" },
+  { note: "D4", duration: "8n" },
+  { note: "C4", duration: "8n" },
+
+  { note: "A3", duration: "4n" },
+  { note: "C3", duration: "8n" },
+  { note: "E3", duration: "8n" },
+  { note: "A3", duration: "4n" },
+  { note: "B3", duration: "4n" },
+  { note: "C4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "A4", duration: "8n" },
+
+  { note: "C4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "A4", duration: "8n" },
+  { note: "C5", duration: "4n" },
+  { note: "B4", duration: "4n" },
+  { note: "A4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "C4", duration: "8n" },
+
+  // Additional 50 notes
+  { note: "E4", duration: "4n" },
+  { note: "D#4", duration: "8n" },
+  { note: "E4", duration: "8n" },
+  { note: "D#4", duration: "4n" },
+  { note: "E4", duration: "4n" },
+  { note: "B3", duration: "4n" },
+  { note: "D4", duration: "8n" },
+  { note: "C4", duration: "8n" },
+
+  { note: "A3", duration: "4n" },
+  { note: "C3", duration: "8n" },
+  { note: "E3", duration: "8n" },
+  { note: "A3", duration: "4n" },
+  { note: "B3", duration: "4n" },
+  { note: "C4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "A4", duration: "8n" },
+
+  { note: "C4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "A4", duration: "8n" },
+  { note: "C5", duration: "4n" },
+  { note: "B4", duration: "4n" },
+  { note: "A4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "C4", duration: "8n" },
+
+  // End of additional notes
+];
+const moonlightSonataFamousPart = [
+  { note: "C#4", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "G#4", duration: "8n" },
+  { note: "C#5", duration: "4n" },
+  { note: "E5", duration: "8n" },
+  { note: "G#5", duration: "8n" },
+  { note: "C#6", duration: "4n" },
+  { note: "G#5", duration: "8n" },
+  { note: "E5", duration: "8n" },
+  { note: "C#5", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "A4", duration: "8n" },
+  { note: "C#5", duration: "4n" },
+  { note: "E5", duration: "8n" },
+  { note: "A5", duration: "8n" },
+  { note: "C#6", duration: "4n" },
+  { note: "A5", duration: "8n" },
+  { note: "E5", duration: "8n" },
+  { note: "C#5", duration: "4n" },
+  { note: "E4", duration: "8n" },
+  { note: "G#4", duration: "8n" },
+  { note: "C#5", duration: "4n" },
+  { note: "E5", duration: "8n" },
+  { note: "G#5", duration: "8n" },
+];
+
+
+// You can continue extending the piece as needed.
+
+export { furElise, riverFlowsInYou, moonlightSonata, moonlightSonataFamousPart };

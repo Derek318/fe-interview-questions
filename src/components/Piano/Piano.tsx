@@ -5,7 +5,12 @@ import { Button, Row, Slider, Switch, Typography } from "antd";
 import NoteDisplay from "./NoteDisplay/NoteDisplay";
 import pianoKeys from "../../data/pianoKeys";
 import PianoKey from "./PianoKey";
-import { riverFlowsInYou } from "../../data/furElise";
+import {
+  riverFlowsInYou,
+  furElise,
+  moonlightSonata,
+  moonlightSonataFamousPart,
+} from "../../data/furElise";
 
 import "./Piano.css";
 
@@ -48,7 +53,7 @@ const Piano = () => {
   };
 
   const handleAutoplay = async () => {
-    for (const { note, duration } of riverFlowsInYou) {
+    for (const { note, duration } of moonlightSonataFamousPart) {
       setClickedNote(note);
       await playNoteWithDelay(note, duration);
     }
