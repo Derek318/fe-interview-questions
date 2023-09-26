@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ToyRequest from "./components/Weather/Weather";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Snake from "./components/Snake/Snake";
-import { fruitOptions } from "./constants";
 import Piano from "./components/Piano/Piano";
+import Paint from "./components/Paint/Paint";
+import { fruitOptions } from "./constants";
 
 const { Header, Content } = Layout;
 
@@ -50,6 +51,15 @@ function App() {
                 Piano
               </Link>
             </Menu.Item>
+            <Menu.Item key="5">
+              <Link
+                draggable={false}
+                style={{ userSelect: "none" }}
+                to="/paint"
+              >
+                Paint
+              </Link>
+            </Menu.Item>
             {/* Add more menu items for other Mini-projects */}
           </Menu>
         </Header>
@@ -62,6 +72,7 @@ function App() {
             />
             <Route path="/snake" element={<Snake />} />
             <Route path="/piano" element={<Piano />} />
+            <Route path="/paint" element={<Paint />} />
             {/* Add more routes for other Mini-projects */}
           </Routes>
         </Content>

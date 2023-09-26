@@ -1,16 +1,11 @@
 import * as Tone from "tone";
 import { useState } from "react";
 import { SoundOutlined } from "@ant-design/icons";
-import { Button, Row, Slider, Switch, Typography } from "antd";
+import { Button, Row, Select, Slider, Switch, Typography } from "antd";
 import NoteDisplay from "./NoteDisplay/NoteDisplay";
+import { songs } from "../../data/Songs";
 import pianoKeys from "../../data/pianoKeys";
 import PianoKey from "./PianoKey";
-import {
-  riverFlowsInYou,
-  furElise,
-  moonlightSonata,
-  moonlightSonataFamousPart,
-} from "../../data/furElise";
 
 import "./Piano.css";
 
@@ -21,6 +16,8 @@ const Piano = () => {
   const [volume, setVolume] = useState<number>(0.5);
   const [sustained, setSustained] = useState(true);
   const [synth, setSynth] = useState(false);
+  const [songIdx, setSongIdx] = useState<number>(0);
+  const [songIsPlaying, setSongIsPlaying] = useState(false);
 
   const playNoteWithDelay = async (note: string, duration: string) => {
     setClickedNote(note); // Update the displayed note
@@ -53,9 +50,18 @@ const Piano = () => {
   };
 
   const handleAutoplay = async () => {
-    for (const { note, duration } of moonlightSonataFamousPart) {
-      setClickedNote(note);
-      await playNoteWithDelay(note, duration);
+    for (const step of songs[songIdx].song) {
+      if (step instanceof Array) {
+        await Promise.all(
+          step.map(async ({ note, duration }) => {
+            setClickedNote(note);
+            await playNoteWithDelay(note, duration);
+          })
+        );
+      } else {
+        setClickedNote(step.note);
+        await playNoteWithDelay(step.note, step.duration);
+      }
     }
   };
 
@@ -77,8 +83,8 @@ const Piano = () => {
         ))}
       </div>
       <NoteDisplay note={clickedNote} />
-      <Row style={{ paddingTop: "80px" }} justify={"center"} align={"middle"}>
-        <SoundOutlined />
+      <Row style={{ paddingTop: "80px" }} justify={"center"} align={"bottom"}>
+        <SoundOutlined style={{ paddingBottom: "10px" }} />
         <Slider
           style={{ width: "200px", marginRight: "40px" }}
           min={0}
@@ -94,14 +100,32 @@ const Piano = () => {
           </Text>
           <Switch defaultChecked onChange={() => setSustained(!sustained)} />
         </div>
-        <div>
+        <div style={{ marginRight: "40px" }}>
           <Text strong style={{ display: "block", userSelect: "none" }}>
             Synth
           </Text>
           <Switch defaultChecked={false} onChange={() => setSynth(!synth)} />
         </div>
-        <Button type="primary" onClick={handleAutoplay}>
-          Maestro Mode
+        <Select
+          style={{ width: "400px" }}
+          disabled={songIsPlaying}
+          defaultValue={0}
+          options={songs.map((song, idx) => ({
+            value: idx,
+            label: song.name,
+          }))}
+          onChange={(value) => setSongIdx(value)}
+        />
+        <Button
+          type="primary"
+          disabled={songIsPlaying}
+          onClick={async () => {
+            setSongIsPlaying(true);
+            await handleAutoplay();
+            setSongIsPlaying(false);
+          }}
+        >
+          Play Song
         </Button>
       </Row>
     </div>
