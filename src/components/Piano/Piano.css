@@ -11,6 +11,12 @@
   cursor: pointer;
 }
 
+.white-key.clicked,
+.black-key.clicked {
+  background-color: rgba(210, 59, 59, 0.5) !important;
+  transition: background-color 10ms;
+}
+
 .white-key {
   flex: 1;
   border: 1px solid #000;
@@ -19,6 +25,7 @@
   line-height: 120px; /* Adjust line height */
   font-weight: bold;
   font-size: 12px; /* Adjust font size */
+  transition: background-color 0.5s;
 }
 
 .black-key {
@@ -26,6 +33,7 @@
   height: 80px; /* Keep the height of the black key */
   background-color: #000;
   position: relative;
+  transition: background-color 0.5s;
 }
 
 .black-key:before {

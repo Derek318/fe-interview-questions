@@ -17,6 +17,7 @@ interface KeyParams {
 
 const PianoKey = ({
   type,
+  note,
   volume,
   sustained,
   frequency,
@@ -24,14 +25,15 @@ const PianoKey = ({
   path,
   onClick,
 }: KeyParams) => {
-  const classNames = `key ${type}-key`;
   const { isMouseDown } = useMouse();
+  const [isClicked, setIsClicked] = useState(false);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
+  const classNames = `key ${type}-key ${isClicked ? "clicked" : ""}`;
+  const id = `piano-key-${note}`;
 
   const playSound = () => {
     if (synth) {
-      // Synth Notes
-      const synth = new Tone.Synth().toMaster();
+      const synth = new Tone.Synth().toDestination();
       synth.triggerAttack(frequency);
       if (sustained) {
         setTimeout(() => {
@@ -53,26 +55,41 @@ const PianoKey = ({
 
   const stopSound = () => {
     if (audio && !synth && !sustained) {
-      // Add a delay of 2000 milliseconds (2 seconds) before stopping the audio
       setTimeout(() => {
         audio.pause();
         setAudio(null);
       }, 400);
     }
   };
+
   return (
     <div
+      id={id}
       className={classNames}
+      onClick={(e) => {
+        if (e.currentTarget.getAttribute("data-programmatic-click")) {
+          playSound();
+        }
+        setIsClicked(!isClicked);
+      }}
       onMouseDown={() => {
+        setIsClicked(true);
         onClick?.();
         playSound();
       }}
-      onMouseUp={stopSound}
+      onMouseUp={() => {
+        setIsClicked(false);
+        stopSound();
+      }}
       onMouseEnter={() => {
-        console.log(isMouseDown);
         if (isMouseDown) {
+          setIsClicked(true);
           playSound();
         }
+      }}
+      onMouseLeave={() => {
+        setIsClicked(false);
+        stopSound();
       }}
     />
   );

@@ -1,9 +1,11 @@
+import * as Tone from "tone";
 import { useState } from "react";
 import { SoundOutlined } from "@ant-design/icons";
-import { Row, Slider, Switch, Typography } from "antd";
+import { Button, Row, Slider, Switch, Typography } from "antd";
+import NoteDisplay from "./NoteDisplay/NoteDisplay";
 import pianoKeys from "../../data/pianoKeys";
 import PianoKey from "./PianoKey";
-import NoteDisplay from "./NoteDisplay/NoteDisplay";
+import { riverFlowsInYou } from "../../data/furElise";
 
 import "./Piano.css";
 
@@ -15,8 +17,41 @@ const Piano = () => {
   const [sustained, setSustained] = useState(true);
   const [synth, setSynth] = useState(false);
 
-  const handleVolumeChange = (newVolume: number) => {
-    setVolume(newVolume);
+  const playNoteWithDelay = async (note: string, duration: string) => {
+    setClickedNote(note); // Update the displayed note
+    const pianoKey = pianoKeys.find((key) => key.note === note);
+
+    if (pianoKey) {
+      const pianoKeyComponent = document.getElementById(
+        `piano-key-${pianoKey.note}`
+      ) as HTMLElement;
+
+      if (pianoKeyComponent) {
+        // Trigger the click event with a custom data attribute
+        pianoKeyComponent.setAttribute("data-programmatic-click", "true");
+        pianoKeyComponent.click(); // Trigger the click event to apply the "clicked" class
+
+        // Set a timeout to remove the "clicked" class after the note duration
+        setTimeout(() => {
+          pianoKeyComponent.removeAttribute("data-programmatic-click"); // Remove the custom data attribute
+          pianoKeyComponent.click(); // Trigger another click to remove the class
+        }, Tone.Time(duration).toMilliseconds());
+      }
+
+      // Wait for the duration of the note before resolving the promise
+      await new Promise<void>((resolve) => {
+        setTimeout(() => {
+          resolve();
+        }, Tone.Time(duration).toMilliseconds());
+      });
+    }
+  };
+
+  const handleAutoplay = async () => {
+    for (const { note, duration } of riverFlowsInYou) {
+      setClickedNote(note);
+      await playNoteWithDelay(note, duration);
+    }
   };
 
   return (
@@ -45,7 +80,7 @@ const Piano = () => {
           max={1}
           step={0.01}
           value={volume}
-          onChange={handleVolumeChange}
+          onChange={(vol) => setVolume(vol)}
         />
 
         <div style={{ marginRight: "40px" }}>
@@ -60,6 +95,9 @@ const Piano = () => {
           </Text>
           <Switch defaultChecked={false} onChange={() => setSynth(!synth)} />
         </div>
+        <Button type="primary" onClick={handleAutoplay}>
+          Maestro Mode
+        </Button>
       </Row>
     </div>
   );
