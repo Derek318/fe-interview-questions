@@ -1,0 +1,47 @@
+/* src/components/Piano.css */
+
+.piano {
+  display: flex;
+  width: 100%;
+  max-width: 100vw; /* Ensure it doesn't exceed the viewport width */
+  /* overflow-x: auto; Add horizontal scrolling if needed */
+  height: 120px; /* Reduce the height */
+  background-color: #f0f0f0;
+  user-select: none;
+  cursor: pointer;
+}
+
+.white-key {
+  flex: 1;
+  border: 1px solid #000;
+  background-color: #fff;
+  text-align: center;
+  line-height: 120px; /* Adjust line height */
+  font-weight: bold;
+  font-size: 12px; /* Adjust font size */
+}
+
+.black-key {
+  flex: 1;
+  height: 80px; /* Keep the height of the black key */
+  background-color: #000;
+  position: relative;
+}
+
+.black-key:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0px; /* Adjust the height to match the black key's height */
+  background-color: #000;
+}
+
+.white-key:hover {
+  background-color: rgba(28, 250, 116, 0.5);
+}
+
+.black-key:hover {
+  background-color: rgba(28, 250, 116, 0.5);
+}

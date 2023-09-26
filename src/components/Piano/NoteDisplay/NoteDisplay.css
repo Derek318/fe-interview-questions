@@ -1,0 +1,13 @@
+.note-display {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 64px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 1s ease-in-out; /* 6 seconds fade-in and fade-out */
+}
+
+.visible {
+  opacity: 1; /* Visible state */
+}

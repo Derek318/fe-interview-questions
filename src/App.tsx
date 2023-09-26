@@ -4,6 +4,7 @@ import ToyRequest from "./components/Weather/Weather";
 import Dropdown from "./components/Dropdown/Dropdown";
 import Snake from "./components/Snake/Snake";
 import { fruitOptions } from "./constants";
+import Piano from "./components/Piano/Piano";
 
 const { Header, Content } = Layout;
 
@@ -14,13 +15,40 @@ function App() {
         <Header>
           <Menu theme="dark" mode="horizontal" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
-              <Link to="/weather">Weather</Link>
+              <Link
+                draggable={false}
+                style={{ userSelect: "none" }}
+                to="/weather"
+              >
+                Weather
+              </Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/dropdown">Dropdown</Link>
+              <Link
+                draggable={false}
+                style={{ userSelect: "none" }}
+                to="/dropdown"
+              >
+                Dropdown
+              </Link>
             </Menu.Item>
             <Menu.Item key="3">
-              <Link to="/snake">Snake</Link>
+              <Link
+                draggable={false}
+                style={{ userSelect: "none" }}
+                to="/snake"
+              >
+                Snake
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="4">
+              <Link
+                draggable={false}
+                style={{ userSelect: "none" }}
+                to="/piano"
+              >
+                Piano
+              </Link>
             </Menu.Item>
             {/* Add more menu items for other Mini-projects */}
           </Menu>
@@ -33,6 +61,7 @@ function App() {
               element={<Dropdown options={fruitOptions} multiple />}
             />
             <Route path="/snake" element={<Snake />} />
+            <Route path="/piano" element={<Piano />} />
             {/* Add more routes for other Mini-projects */}
           </Routes>
         </Content>
